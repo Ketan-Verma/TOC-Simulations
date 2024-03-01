@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFA</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
+  </head>
+  <body>
+    <h1>NFA</h1>
+
+    <label for="regex">Regular Expression</label>
+    <input
+      placeholder="regular expression..."
+      value="(a|b)*"
+      type="text"
+      id="nfaregex"
+    />
+    <button id="nfaButton">Submit</button>
+    <div id="nfaOutput"></div>
+    <div
+      id="myNfaNetwork"
+      style="background-color: rgb(252, 255, 214); width: 720px; height: 300px"
+    ></div>
+    <script src="../scripts/GraphMaker.js"></script>
+    <script src="../scripts/Basics.js"></script>
+    <script src="../scripts/NFA.js"></script>
+    <script src="../scripts/NFAeventlistners.js"></script>
+  </body>
+</html>
