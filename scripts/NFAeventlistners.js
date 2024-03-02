@@ -2,15 +2,80 @@ let mainNfa = null;
 let alltransitions = [];
 let graphNetwork = null;
 let inputstring = "010011";
-document.getElementById("nfaButton").addEventListener("click", function () {
-  const nfaRegex = document.getElementById("nfaregex").value;
-  const tempNfa = regexToNFA(nfaRegex);
-  const tempTransitionTable = generateTransitionTable(tempNfa);
-  console.table(tempTransitionTable);
-  //   document.getElementById("nfaOutput").innerHTML = "hello";
-  createTable(tempTransitionTable, "nfaOutput");
+let inputTransitionString = "";
+//remove epsilon transitions
+//make dfa
+document.getElementById("noenfaButton").addEventListener("click", function () {
+  if (!inputTransitionString.includes("e")) {
+    alert("no epsilon transitions ");
+    return;
+  }
 });
 
+//put value
+document.getElementById("nfaButton").addEventListener("click", function () {
+  inputTransitionString = "";
+  document.getElementById("nfaTransitionFunction").innerText = "";
+  const nfaRegex = document.getElementById("nfaregex").value.toString();
+  let states = 1;
+  for (let i = 0; i < nfaRegex.length; ) {
+    const element = nfaRegex[i];
+    // console.log("i=", i, element);
+    if (element === "(") {
+      while (nfaRegex[i] !== ")" && nfaRegex[i + 1] !== "*") {
+        i++;
+      }
+      // console.log(states, "- 0,1 >", states);
+      inputTransitionString += `q${states}-0>q${states},`;
+      inputTransitionString += `q${states}-1>q${states},`;
+      inputTransitionString += `q${states}-e>q${states + 1},`;
+      states++;
+      i += 2;
+    } else if (element === "0" && nfaRegex[i + 1] === "*") {
+      // console.log(states, "- 0* >", states);
+      // console.log(states, "- e >", states + 1);
+      inputTransitionString += `q${states}-0>q${states},`;
+      inputTransitionString += `q${states}-e>q${states + 1},`;
+
+      i += 2;
+      states++;
+    } else if (element === "1" && nfaRegex[i + 1] === "*") {
+      // console.log(states, "- 1* >", states);
+      // console.log(states, "- e >", states + 1);
+      inputTransitionString += `q${states}-1>q${states},`;
+      inputTransitionString += `q${states}-e>q${states + 1},`;
+
+      i += 2;
+      states++;
+    } else if (element === "0") {
+      // console.log(states, "- 0 >", states + 1);
+      inputTransitionString += `q${states}-0>q${states + 1},`;
+      i++;
+      states++;
+    } else if (element === "1") {
+      // console.log(states, "- 1 >", states + 1);
+      inputTransitionString += `q${states}-1>q${states + 1},`;
+
+      i++;
+      states++;
+    } else {
+      console.log("Invalid input");
+      i++;
+    }
+  }
+  document.getElementById("nfaTransitionFunction").innerText =
+    inputTransitionString.slice(0, -1);
+  document.getElementById("nfaAlphabet").value = `0,1`;
+  document.getElementById("nfaStates").value = `q1`;
+  for (let i = 1; i < states; i++) {
+    document.getElementById("nfaStates").value += `,q${i + 1}`;
+  }
+  document.getElementById("nfaInitialState").value = `q1`;
+  document.getElementById("nfaFinalStates").value = `q${states}`;
+
+  console.log(inputTransitionString);
+});
+// create graph
 document
   .getElementById("nfaInitializationButton")
   .addEventListener("click", function () {
@@ -57,20 +122,43 @@ document
     // }
     // console.log(tempNfa);
   });
-
+// start simulation
 document
   .getElementById("nfaSimulationButton")
   .addEventListener("click", function () {
     // startSimulation(mainNfa, string)
     if (!mainNfa) {
-      alert("Please initialize the NFA first");
+      alert(" initialize the NFA first");
       return;
     }
+    if (inputTransitionString.includes("e")) {
+      alert("Epsilon transitions are not supported");
+      return;
+    }
+    document.getElementById("nfaOutput").innerText = "";
+
     inputstring = document
       .getElementById("nfaInputString")
       .value.trim()
       .replace(/\s/g, "");
     startSimulation(mainNfa, inputstring);
+  });
+// replay simulation
+document
+  .getElementById("nfaReplayButton")
+  .addEventListener("click", function () {
+    if (inputTransitionString.includes("e")) {
+      alert("Epsilon transitions are not supported");
+      return;
+    }
+    if (alltransitions.length == 0) {
+      alert("simulate first");
+      return;
+    }
+
+    document.getElementById("nfaOutput").innerText = "";
+
+    showsimulation(alltransitions, graphNetwork);
   });
 function highlightAndChangeColor(
   nodeId,
@@ -129,12 +217,5 @@ function showsimulation(stransactions, sgraph) {
     i++;
   }, 500);
 }
-document
-  .getElementById("nfaReplayButton")
-  .addEventListener("click", function () {
-    if (alltransitions.length == 0) {
-      alert("Please simulate first");
-      return;
-    }
-    showsimulation(alltransitions, graphNetwork);
-  });
+/*
+ */

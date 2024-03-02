@@ -39,7 +39,7 @@
             <input
               class="form-control"
               placeholder="alphabet..."
-              value="a,b"
+              value="0,1"
               type="text"
               id="nfaAlphabet"
             />
@@ -70,7 +70,7 @@
             >
             <textarea
               class="form-control"
-              placeholder="q0-a>q1,q0-b>q2,q1-a>q0,..."
+              placeholder="q0-0>q1,q0-1>q2,q1-0>q0,..."
               value="q0-a>q1,q0-b>q2"
               type="text"
               id="nfaTransitionFunction"
@@ -95,12 +95,17 @@
             <input
               class="form-control"
               placeholder="regular expression..."
-              value="(a|b)*"
+              value="11(0+1)*1010"
               type="text"
               id="nfaregex"
             />
           </div>
-          <button class="btn btn-primary" id="nfaButton">Submit</button>
+          <button class="btn btn-primary" id="nfaButton" type="button">
+            Put Values
+          </button>
+          <button class="btn btn-primary" id="noenfaButton" type="button">
+            remove e
+          </button>
         </form>
       </div>
     </div>
@@ -121,8 +126,9 @@
     <div id="stringShow"></div>
     <div
       id="myNfaNetwork"
-      style="background-color: rgb(252, 255, 214); height: 400px"
+      style="background-color: rgb(252, 255, 214); height: 800px"
     ></div>
+
     <script src="../scripts/NFA.js"></script>
     <script src="../scripts/GraphMaker.js"></script>
     <script src="../scripts/Basics.js"></script>

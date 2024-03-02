@@ -111,7 +111,7 @@ function makeNetworkFromNfa(containerId, nfaObject) {
       // ... other edge options
     },
     physics: {
-      enabled: false,
+      // enabled: false,
       barnesHut: {
         gravitationalConstant: -8000,
         springLength: 150,
