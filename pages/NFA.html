@@ -8,26 +8,121 @@
       type="text/javascript"
       src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
     ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../styles/nfa.css" />
   </head>
   <body>
     <h1>NFA</h1>
+    <button onclick="myToggleFunction('nfamakingoptions','flex')">
+      Toggle
+    </button>
+    <div id="nfamakingoptions" class="options">
+      <div class="initialization-nfa">
+        <form>
+          <div class="mb-3">
+            <label class="form-label" for="states">States</label>
+            <input
+              class="form-control"
+              placeholder="states..."
+              value="q0,q1,q2"
+              type="text"
+              id="nfaStates"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="alphabet">Alphabet</label>
+            <input
+              class="form-control"
+              placeholder="alphabet..."
+              value="a,b"
+              type="text"
+              id="nfaAlphabet"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="initialState">Initial State</label>
+            <input
+              class="form-control"
+              placeholder="initial state..."
+              value="q0"
+              type="text"
+              id="nfaInitialState"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="finalStates">Final States</label>
+            <input
+              class="form-control"
+              placeholder="final states..."
+              value="q2"
+              type="text"
+              id="nfaFinalStates"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="Transition function"
+              >Transition function (q0-a>q1,q0-b>q2,q1-a>q0,...)</label
+            >
+            <textarea
+              class="form-control"
+              placeholder="q0-a>q1,q0-b>q2,q1-a>q0,..."
+              value="q0-a>q1,q0-b>q2"
+              type="text"
+              id="nfaTransitionFunction"
+            >
+        q0-0>q0,q0-1>q1,q1-0>q2,q1-1>q1,q2-0>q2,q2-1>q2
+  </textarea
+            >
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="nfaInitializationButton"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <div class="regexcontainer">
+        <form action="">
+          <div class="mb-3">
+            <label class="form-label" for="regex">Regular Expression</label>
+            <input
+              class="form-control"
+              placeholder="regular expression..."
+              value="(a|b)*"
+              type="text"
+              id="nfaregex"
+            />
+          </div>
+          <button class="btn btn-primary" id="nfaButton">Submit</button>
+        </form>
+      </div>
+    </div>
 
-    <label for="regex">Regular Expression</label>
-    <input
-      placeholder="regular expression..."
-      value="(a|b)*"
-      type="text"
-      id="nfaregex"
-    />
-    <button id="nfaButton">Submit</button>
     <div id="nfaOutput"></div>
+    <div class="simulation-control">
+      <button class="btn btn-primary" id="nfaSimulationButton">Simulate</button>
+      <button class="btn btn-primary" id="nfaResetButton">Reset</button>
+    </div>
     <div
       id="myNfaNetwork"
-      style="background-color: rgb(252, 255, 214); width: 720px; height: 300px"
+      style="background-color: rgb(252, 255, 214); height: 400px"
     ></div>
+    <script src="../scripts/Parser.js"></script>
     <script src="../scripts/GraphMaker.js"></script>
     <script src="../scripts/Basics.js"></script>
     <script src="../scripts/NFA.js"></script>
     <script src="../scripts/NFAeventlistners.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

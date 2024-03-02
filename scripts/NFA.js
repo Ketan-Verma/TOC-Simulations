@@ -37,7 +37,103 @@ class NFA {
     this.finalStates.add(state);
   }
 }
+/*
 
+function buildNFAFromPostfix(postfix) {
+//   const stack = [];
+
+//   for (let i = 0; i < postfix.length; i++) {
+//     const symbol = postfix[i];
+
+//     if (/[a-zA-Z0-9]/.test(symbol)) {
+//       // Operand: Create a basic NFA
+//       const nfa = new NFA();
+//       const startState = Symbol("start");
+//       const finalState = Symbol("final");
+
+//       nfa.addState(startState);
+//       nfa.addState(finalState);
+//       nfa.addAlphabet(symbol);
+//       nfa.addTransition(startState, symbol, [finalState]);
+//       nfa.setStartState(startState);
+//       nfa.addFinalState(finalState);
+
+//       stack.push(nfa);
+//     } else {
+//       // Operator: Apply operation to NFAs on the stack
+//       if (symbol === "|") {
+//         const nfa2 = stack.pop();
+//         const nfa1 = stack.pop();
+//         const nfa = new NFA();
+
+//         const startState = Symbol("start");
+//         const finalState = Symbol("final");
+
+//         nfa.addState(startState);
+//         nfa.addState(finalState);
+//         nfa.setStartState(startState);
+//         nfa.addFinalState(finalState);
+
+//         nfa.addAlphabet(...nfa1.alphabet, ...nfa2.alphabet);
+
+//         nfa.addTransition(startState, "ε", [nfa1.startState, nfa2.startState]);
+//         nfa.addTransition(nfa1.finalStates.values().next().value, "ε", [
+//           finalState,
+//         ]);
+//         nfa.addTransition(nfa2.finalStates.values().next().value, "ε", [
+//           finalState,
+//         ]);
+
+//         stack.push(nfa);
+//       } else if (symbol === ".") {
+//         const nfa2 = stack.pop();
+//         const nfa1 = stack.pop();
+//         const nfa = new NFA();
+
+//         nfa.addAlphabet(...nfa1.alphabet, ...nfa2.alphabet);
+//         nfa.addStates(nfa1.states);
+//         nfa.addStates(nfa2.states);
+//         nfa.setStartState(nfa1.startState);
+
+//         nfa.addTransition(nfa1.finalStates.values().next().value, "ε", [
+//           nfa2.startState,
+//         ]);
+
+//         nfa.addFinalStates(nfa2.finalStates);
+
+//         stack.push(nfa);
+//       } else if (symbol === "*") {
+//         const nfa1 = stack.pop();
+//         const nfa = new NFA();
+
+//         const startState = Symbol("start");
+//         const finalState = Symbol("final");
+
+//         nfa.addState(startState);
+//         nfa.addState(finalState);
+//         nfa.setStartState(startState);
+//         nfa.addFinalState(finalState);
+//         nfa.addAlphabet(...nfa1.alphabet);
+
+//         nfa.addTransition(startState, "ε", [nfa1.startState, finalState]);
+//         nfa.addTransition(nfa1.finalStates.values().next().value, "ε", [
+//           nfa1.startState,
+//           finalState,
+//         ]);
+
+//         stack.push(nfa);
+//       }
+//     }
+//   }
+
+//   // The final NFA will be on the top of the stack
+//   return stack.pop();
+// }
+
+// Example usage:
+// const postfixExpression = "ab.|c*.";
+// const tempNfanfa = buildNFAFromPostfix(postfixExpression);
+// console.log(tempNfanfa);
 function regexToNFA(regex) {
   const nfa = new NFA();
 
@@ -86,8 +182,9 @@ function generateTransitionTable(nfa) {
   return table;
 }
 
-const nfa = regexToNFA("(a|b)*");
-const transitionTable = generateTransitionTable(nfa);
+// const nfa = regexToNFA("(a|b)*");
+// const transitionTable = generateTransitionTable(nfa);
 // console.log("nfa");
 // console.log(nfa);
 // console.table(transitionTable);
+*/

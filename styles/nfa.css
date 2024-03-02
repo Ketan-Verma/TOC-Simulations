@@ -1,0 +1,10 @@
+.options {
+  display: flex;
+  margin: 10px 0;
+  padding: 1em;
+}
+.initialization-nfa,
+.regexcontainer {
+  padding: 1em;
+  max-width: 480px;
+}

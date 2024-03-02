@@ -18,3 +18,11 @@ function createTable(data, containerId) {
   container.appendChild(table);
   makeNetwork("myNfaNetwork", data);
 }
+function myToggleFunction(tempdiv, displaytype) {
+  var temp_x = document.getElementById(tempdiv);
+  if (temp_x.style.display === "none") {
+    temp_x.style.display = displaytype;
+  } else {
+    temp_x.style.display = "none";
+  }
+}
