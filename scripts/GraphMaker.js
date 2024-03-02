@@ -65,6 +65,7 @@ function makeNetworkFromNfa(containerId, nfaObject) {
       if (!uniqueEdges.has(edgeKey)) {
         // console.log("edgeKey", edgeKey);
         edges.add({
+          id: `${fromState}-${toState}`,
           from: fromState,
           to: toState,
           label: symbol,
@@ -93,6 +94,7 @@ function makeNetworkFromNfa(containerId, nfaObject) {
   var data = { nodes: nodes, edges: edges };
   var options = {
     edges: {
+      selectionWidth: 3,
       smooth: {
         type: "curvedCCW",
         roundness: 0.2,
@@ -118,4 +120,5 @@ function makeNetworkFromNfa(containerId, nfaObject) {
   };
 
   var network = new vis.Network(container, data, options);
+  graphNetwork = network;
 }

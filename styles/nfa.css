@@ -8,3 +8,9 @@
   padding: 1em;
   max-width: 480px;
 }
+#stringShow span {
+  padding: 2px;
+  font-size: large;
+  margin: 0;
+  background-color: aliceblue;
+}

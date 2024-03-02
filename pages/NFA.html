@@ -84,7 +84,7 @@
             class="btn btn-primary"
             id="nfaInitializationButton"
           >
-            Submit
+            Create Graph
           </button>
         </form>
       </div>
@@ -105,20 +105,29 @@
       </div>
     </div>
 
-    <div id="nfaOutput"></div>
     <div class="simulation-control">
-      <button class="btn btn-primary" id="nfaSimulationButton">Simulate</button>
-      <button class="btn btn-primary" id="nfaResetButton">Reset</button>
+      <form action="">
+        <input type="text" name="string" id="nfaInputString" value="0110" />
+        <button type="button" class="btn btn-primary" id="nfaSimulationButton">
+          Simulate
+        </button>
+        <button type="button" class="btn btn-primary" id="nfaReplayButton">
+          Replay
+        </button>
+      </form>
     </div>
+
+    <div id="nfaOutput"></div>
+    <div id="stringShow"></div>
     <div
       id="myNfaNetwork"
       style="background-color: rgb(252, 255, 214); height: 400px"
     ></div>
-    <script src="../scripts/Parser.js"></script>
+    <script src="../scripts/NFA.js"></script>
     <script src="../scripts/GraphMaker.js"></script>
     <script src="../scripts/Basics.js"></script>
-    <script src="../scripts/NFA.js"></script>
     <script src="../scripts/NFAeventlistners.js"></script>
+    <script src="../scripts/Parser.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
