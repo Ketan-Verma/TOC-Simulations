@@ -181,6 +181,25 @@ function highlightAndChangeColor(
 }
 
 function showsimulation(stransactions, sgraph) {
+  // change color
+  var updatedNodes = [];
+  sgraph.body.data.nodes.forEach(function (node) {
+    console.log(mainNfa.finalStates, node.id);
+    if (!mainNfa) {
+      prompt("initialize the NFA first");
+      return;
+    }
+    var updatedNode = {
+      id: node.id,
+      // color: { background: "#97c2fc" },
+      color: mainNfa.finalStates.includes(node.id)
+        ? { background: "orange", border: "black" }
+        : { background: "#97c2fc" },
+    };
+    updatedNodes.push(updatedNode);
+  });
+  sgraph.body.data.nodes.update(updatedNodes);
+
   console.log("steps", stransactions.length);
   let i = 0;
   const stringShowDiv = document.getElementById("stringShow");
